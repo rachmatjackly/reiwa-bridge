@@ -782,8 +782,13 @@ main {
   content: "";
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.14), transparent 60%);
   z-index: 1;
+}
+
+.visual-block::before {
+  border-radius: 0;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.55) 100%);
 }
 
 .visual-block::after {
@@ -791,13 +796,7 @@ main {
   height: 220px;
   top: -40px;
   right: -60px;
-}
-
-.visual-block::before {
-  width: 240px;
-  height: 240px;
-  bottom: -60px;
-  left: -40px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 60%);
 }
 
 .visual-title {
