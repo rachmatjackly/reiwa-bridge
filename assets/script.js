@@ -2,6 +2,8 @@ const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 const toast = document.getElementById("toast");
 const form = document.getElementById("contact-form");
 const langButtons = Array.from(document.querySelectorAll(".lang-btn"));
+const menuToggles = Array.from(document.querySelectorAll(".menu-toggle"));
+const navs = Array.from(document.querySelectorAll(".nav"));
 
 const translations = {
   id: {},
@@ -177,6 +179,28 @@ if (savedLang && translations[savedLang]) {
 } else {
   applyLang("id");
 }
+
+// Mobile nav toggle
+menuToggles.forEach((toggle) => {
+  const nav = toggle.closest(".nav");
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+});
+
+// Close nav on link click (mobile)
+navs.forEach((nav) => {
+  nav.querySelectorAll(".nav-link").forEach((link) =>
+    link.addEventListener("click", () => {
+      if (nav.classList.contains("open")) {
+        nav.classList.remove("open");
+        const toggle = nav.querySelector(".menu-toggle");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      }
+    })
+  );
+});
 // Highlight active nav based on page
 const currentPage = document.body.dataset.page || "";
 navLinks.forEach((link) => {

@@ -210,6 +210,41 @@ a {
   gap: 16px;
 }
 
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid #d8cdbb;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(15, 27, 45, 0.08);
+  margin-left: auto;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--navy);
+  position: relative;
+}
+
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: var(--navy);
+}
+
+.menu-toggle span::before { top: -6px; }
+.menu-toggle span::after { top: 6px; }
+
 .nav-link {
   position: relative;
   padding: 10px 6px 8px;
@@ -1256,14 +1291,35 @@ main {
 
 @media (max-width: 720px) {
   .nav {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    order: 2;
   }
 
   .nav-links {
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
+    display: none;
+    order: 4;
+  }
+
+  .nav.open .nav-links {
+    display: flex;
+  }
+
+  .brand {
+    order: 1;
+  }
+
+  .lang-toggle {
+    order: 3;
   }
 
   .hero {
