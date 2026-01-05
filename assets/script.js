@@ -214,6 +214,9 @@ sliders.forEach((slider) => {
   const slides = Array.from(
     slider.querySelectorAll(".team-card, .review-card")
   ).filter((el) => el.closest("[data-slider]") === slider);
+  const isTeam = slider.dataset.slider === "team";
+  const track =
+    slider.querySelector(".review-track") || slider.querySelector(".team-track");
   const dots = Array.from(slider.querySelectorAll(".dot"));
   const prev = slider.querySelector(".slider-btn.prev");
   const next = slider.querySelector(".slider-btn.next");
@@ -235,24 +238,42 @@ sliders.forEach((slider) => {
     timer = setInterval(() => setActive(index + 1), 2000);
   };
 
+  const setTrackHeight = () => {
+    if (isTeam) return; // gunakan tinggi CSS tetap untuk slider tim
+    if (!track || !slides.length) return;
+    const maxH = Math.max(...slides.map((s) => s.offsetHeight));
+    if (maxH > 0) {
+      track.style.minHeight = `${maxH + 12}px`;
+    }
+  };
+
   prev?.addEventListener("click", () => {
     setActive(index - 1);
     startAuto();
+    setTrackHeight();
   });
   next?.addEventListener("click", () => {
     setActive(index + 1);
     startAuto();
+    setTrackHeight();
   });
   dots.forEach((dot, idx) =>
     dot.addEventListener("click", () => {
       setActive(idx);
       startAuto();
+      setTrackHeight();
     })
   );
 
   if (slides.length > 1) {
     startAuto();
   }
+
+  setTrackHeight();
+
+  window.addEventListener("resize", () => {
+    setTimeout(setTrackHeight, 100);
+  });
 });
 
 // Lightweight toast on form submit (contact page)
