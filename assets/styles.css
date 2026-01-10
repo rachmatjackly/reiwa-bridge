@@ -1134,6 +1134,8 @@ main {
   height: 128px;
   border-radius: 50%;
   background: linear-gradient(135deg, #1e2c44, #c53032);
+  background-size: cover;
+  background-position: center;
   color: #fff;
   display: grid;
   place-items: center;
@@ -1144,12 +1146,36 @@ main {
   isolation: isolate;
 }
 
+.avatar-ashri {
+  background-image: url("ashri.jpeg");
+}
+
+.avatar-rosita {
+  background-image: url("rosita.jpeg");
+}
+
+.avatar-fitri {
+  background-image: url("fitri.jpeg");
+}
+
+.avatar-riska {
+  background-image: url("riska.jpeg");
+}
+
+.avatar-cicin {
+  background-image: url("cicin.jpeg");
+}
+
+.avatar-agung {
+  background-image: url("agung.jpeg");
+}
+
 .avatar-photo::after {
   content: "";
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  background: conic-gradient(from 120deg, var(--red), var(--navy), var(--red));
+  /* background: conic-gradient(from 120deg, var(--red), var(--navy), var(--red)); */
   opacity: 0.35;
   z-index: -1;
 }
